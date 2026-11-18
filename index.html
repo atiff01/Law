@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAW·COURSES · Malaysian Written Law Portal</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              dark: '#0a0a0c',
+              card: '#111114',
+              elevated: '#18181c',
+              border: '#26262c',
+              light: '#f8fafc',
+              lightCard: '#ffffff',
+              lightBorder: '#e2e8f0'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.3);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 163, 175, 0.5);
+    }
+    .fade-in {
+      animation: fadeIn 0.2s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-surface-light text-slate-900 dark:bg-surface-dark dark:text-zinc-100 font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-surface-dark/80 border-b border-slate-200 dark:border-surface-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <button id="brand-home-btn" type="button" class="flex items-center gap-2.5 text-left group focus:outline-none">
+        <div class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-mono font-bold text-xs group-hover:scale-105 transition-transform">
+          §
+        </div>
+        <span class="font-mono font-bold tracking-tight text-sm sm:text-base">
+          LAW<span class="text-emerald-600 dark:text-emerald-400">·</span>COURSES
+        </span>
+      </button>
+
+      <!-- Right Controls: Streak, Quick Jump, Theme Toggle -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- Study Streak Pill -->
+        <div title="Daily Study Streak" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
+          <span>🔥</span>
+          <span id="streak-count">1</span>
+        </div>
+
+        <!-- Quick Jump Trigger (Ctrl+K / /) -->
+        <button id="open-search-btn" type="button" class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-surface-card hover:bg-slate-200/80 dark:hover:bg-surface-elevated border border-slate-200 dark:border-surface-border transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span class="hidden sm:inline">Jump to</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-white dark:bg-surface-dark border border-slate-300 dark:border-zinc-700 text-slate-500 dark:text-zinc-400">Ctrl K</kbd>
+        </button>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button id="theme-toggle-btn" type="button" aria-label="Toggle Theme" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-surface-card hover:bg-slate-200/80 dark:hover:bg-surface-elevated border border-slate-200 dark:border-surface-border transition-colors">
+          <svg class="w-3.5 h-3.5 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg class="w-3.5 h-3.5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <span class="hidden md:inline">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="app-root" class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+    <!-- Dynamic Views Rendered via JavaScript -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-surface-border py-6 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500 dark:text-zinc-500">
+      <div>Malaysian Legal System · Written Law Study Portal</div>
+      <div class="flex items-center gap-4">
+        <span>Ref: Written Law Part 1 & Part 2</span>
+        <span>•</span>
+        <button id="reset-progress-btn" type="button" class="hover:text-rose-500 transition-colors underline decoration-dotted">Reset Progress</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command Palette Quick-Jump Modal (Ctrl+K or /) -->
+  <div id="command-modal" class="fixed inset-0 z-50 hidden items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-xs">
+    <div id="command-dialog" class="w-full max-w-lg rounded-xl bg-white dark:bg-surface-card border border-slate-200 dark:border-surface-border shadow-2xl overflow-hidden fade-in">
+      <!-- Search Input -->
+      <div class="flex items-center px-4 border-b border-slate-200 dark:border-surface-border">
+        <svg class="w-4 h-4 text-slate-400 dark:text-zinc-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          id="command-input"
+          type="text"
+          placeholder="Search Articles, Bills, Ultra Vires, Ghazali v PP, Quiz..."
+          class="w-full py-3.5 bg-transparent text-sm focus:outline-none text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-500"
+        />
+        <button id="close-search-btn" type="button" class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-elevated text-slate-500 dark:text-zinc-400 border border-slate-200 dark:border-surface-border">
+          ESC
+        </button>
+      </div>
+      <!-- Search Results List -->
+      <div id="command-results" class="max-h-80 overflow-y-auto p-2 space-y-1">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="px-4 py-2 bg-slate-50 dark:bg-surface-elevated/60 border-t border-slate-200 dark:border-surface-border flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-zinc-500">
+        <span>Tip: Press <kbd class="px-1 rounded bg-white dark:bg-surface-dark border border-slate-300 dark:border-zinc-700">/</kbd> anywhere to search</span>
+        <span>Malaysian Law Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-mono shadow-xl border border-slate-700 dark:border-zinc-300 fade-in">
+    <span id="toast-icon">✓</span>
+    <span id="toast-message">Action completed</span>
+  </div>
+
+  <!-- Application Data & Interactive Logic -->
+  <script>
+    (function () {
+      'use strict';
+
+      // =========================================================================
+      // 1. STRUCTURED LEGAL STUDY DATA (Written Law Part 1 & Part 2)
+      // =========================================================================
+      const STUDY_TIPS = [
+        "Article 160 of the Federal Constitution defines 'Law' to include written law, common law in operation, and any custom or usage having the force of law.",
+        "Money Bills MUST originate in the Dewan Rakyat and be presented by a Minister under Article 67(1) of the Federal Constitution.",
+        "If the YDPA does not give Royal Assent, a Bill automatically becomes law after 1 month (Money Bill) or 12 months (non-Money Bill).",
+        "Ultra vires literally means 'beyond the power given' — always compare the subordinate authority's rule against the Parent Statute.",
+        "In Ghazali v PP [1964] MLJ 156, the Licensing Board acted ultra vires by requiring a Malay-licensed taxi to be driven only by a Malay.",
+        "Subsidiary legislation is defined under Section 3 of the Interpretation Act 1967 and is a practical exception to the Separation of Powers."
+      ];
+
+      const MILESTONES = [
+        {
+          id: 'm1',
+          tag: 'PART 1 · CORE',
+          title: 'Sources of Law & Composition of Parliament',
+          desc: 'Article 160, Federal vs State Constitutions (13 States), Ninth Schedule Lists, and Art 44 (YDPA, 70 Senators, 222 MPs).',
+          targetModule: 'law101',
+          status: 'Foundations'
+        },
+        {
+          id: 'm2',
+          tag: 'PART 1 · FLOW',
+          title: 'Law-Making Process & Royal Assent Timelines',
+          desc: '4 types of Bills, simple majority voting (51%), Art 66 & 67 origination, and Federal Gazette publication.',
+          targetModule: 'law102',
+          status: 'Procedure'
+        },
+        {
+          id: 'm3',
+          tag: 'PART 2 · CASES',
+          title: 'Subsidiary Legislation & Doctrine of Ultra Vires',
+          desc: 'Section 3 Interpretation Act 1967, the 4 Controls, and Ghazali v PP [1964] MLJ 156.',
+          targetModule: 'law103',
+          status: 'High Yield'
+        },
+        {
+          id: 'm4',
+          tag: 'EXAM LAB',
+          title: 'Written Law Diagnostic Quiz & Case Drill',
+          desc: 'Test retention across 8 exam-style MCQs covering constitutional articles, legislative lists, and judicial review.',
+          targetModule: 'quiz',
+          status: 'Practice'
+        }
+      ];
+
+      const MODULES = [
+        {
+          id: 'law101',
+          code: 'LAW101',
+          part: 'Written Law · Part 1',
+          title: 'Sources of Written Law & Parliament',
+          summary: 'Foundations of Malaysian written law, constitutional hierarchy, Ninth Schedule legislative lists, and bicameral parliamentary structure.',
+          tags: ['Article 160', 'Federal & State Constitution', 'Ninth Schedule', 'Article 44 & 49'],
+          accent: 'emerald',
+          sections: [
+            {
+              id: 'intro-sources',
+              badge: '01 · DEFINITION & CLASSIFICATION',
+              heading: 'Sources of Malaysian Law (Article 160)',
+              content: `
+                <p class="text-sm text-slate-600 dark:text-zinc-300 leading-relaxed mb-4">
+                  <strong>Sources of law</strong> refers to where and how law originated—forming the basis of Malaysian law and the legal rules referred to by courts when making decisions. It is divided into two: <strong>Written Law</strong> and <strong>Unwritten Law</strong>.
+                </p>
+                <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 mb-4">
+                  <div class="font-mono text-xs font-semibold text-emerald-700 dark:text-emerald-400 mb-1">ARTICLE 160 · FEDERAL CONSTITUTION</div>
+                  <blockquote class="text-sm italic text-slate-700 dark:text-zinc-200">
+                    “Law includes written law, the common law in so far as it is in operation in the Federation or any part thereof, and any custom or usage having the force of law in the Federation or any part thereof.”
+                  </blockquote>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-semibold text-slate-900 dark:text-zinc-100 mb-1.5">What is Written Law?</div>
+                    <ul class="space-y-1 text-slate-600 dark:text-zinc-400 list-disc pl-4">
+                      <li>Laws made by legislative bodies (also known as enacted law or codified law).</li>
+                      <li>Enacted according to relevant constitutional procedures.</li>
+                      <li>Legislative bodies are part of the government, with members selected by the public in a general election.</li>
+                    </ul>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-semibold text-slate-900 dark:text-zinc-100 mb-1.5">4 Types of Written Law</div>
+                    <ol class="space-y-1 text-slate-600 dark:text-zinc-400 list-decimal pl-4">
+                      <li><strong>Federal Constitution</strong> (Supreme law of Malaysia)</li>
+                      <li><strong>State Constitution</strong> (All 13 States in the Federation)</li>
+                      <li><strong>Primary Legislation</strong> (Statutes enacted by Parliament & State Assemblies)</li>
+                      <li><strong>Subsidiary Legislation</strong> (Rules, Regulations, By-laws)</li>
+                    </ol>
+                  </div>
+                </div>
+              `
+            },
+            {
+              id: 'constitutions-lists',
+              badge: '02 · HIERARCHY & LEGISLATIVE LISTS',
+              heading: 'State Constitutions & Ninth Schedule Lists',
+              content: `
+                <div class="space-y-3 text-sm text-slate-600 dark:text-zinc-300">
+                  <p>
+                    All <strong>13 States</strong> in the Federation of Malaysia have their own <strong>State Constitution</strong>, which is the highest law in that state. Laws made in the state cannot conflict with the State Constitution, and the State Constitution cannot conflict with the <strong>Federal Constitution</strong>—otherwise, it will be <strong>void (not valid)</strong>.
+                  </p>
+                  <div class="grid sm:grid-cols-3 gap-3 pt-2">
+                    <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                      <span class="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 mb-2">LIST I · FEDERAL</span>
+                      <div class="font-semibold text-xs text-slate-900 dark:text-zinc-100 mb-1">Parliament</div>
+                      <p class="text-xs text-slate-500 dark:text-zinc-400">Parliament can enact laws according to matters listed in List I of the Ninth Schedule of the Federal Constitution.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                      <span class="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-2">LIST II · STATE</span>
+                      <div class="font-semibold text-xs text-slate-900 dark:text-zinc-100 mb-1">State Legislative Assembly</div>
+                      <p class="text-xs text-slate-500 dark:text-zinc-400">Has one chamber only (unicameral). Makes laws for matters stated in List II of the Ninth Schedule.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                      <span class="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 mb-2">LIST III · CONCURRENT</span>
+                      <div class="font-semibold text-xs text-slate-900 dark:text-zinc-100 mb-1">Shared Jurisdiction</div>
+                      <p class="text-xs text-slate-500 dark:text-zinc-400">Concurrent list where both Parliament and State Legislative Assemblies can make laws.</p>
+                    </div>
+                  </div>
+                </div>
+              `
+            },
+            {
+              id: 'parliament-composition',
+              badge: '03 · SYSTEM OF GOVERNMENT',
+              heading: 'Composition of Parliament (Articles 44 & 49)',
+              content: `
+                <p class="text-sm text-slate-600 dark:text-zinc-300 mb-4">
+                  <strong>Article 44</strong> states that the legislative authority of the Federation shall be vested in a Parliament, consisting of the <strong>Yang di-Pertuan Agong (YDPA)</strong> and two <em>Majlis</em> (Houses of Parliament): <strong>Dewan Negara (Senate)</strong> and <strong>Dewan Rakyat (House of Representatives)</strong>.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div class="p-4 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="font-mono font-bold text-xs text-emerald-600 dark:text-emerald-400">DEWAN RAKYAT (MPs)</span>
+                      <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">222 MPs</span>
+                    </div>
+                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-zinc-400">
+                      <li>• <strong>Selection:</strong> Voted by the people.</li>
+                      <li>• <strong>Minimum Age:</strong> At least <strong>21 years old</strong>.</li>
+                      <li>• <strong>Term of Office:</strong> <strong>5 years</strong>; automatic vacation of office by dissolution of Parliament.</li>
+                    </ul>
+                  </div>
+                  <div class="p-4 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="font-mono font-bold text-xs text-sky-600 dark:text-sky-400">DEWAN NEGARA (SENATE)</span>
+                      <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-sky-500/10 text-sky-700 dark:text-sky-300">70 Senators</span>
+                    </div>
+                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-zinc-400">
+                      <li>• <strong>Selection:</strong> Appointed by YDPA (distinguished public service, professions, commerce, industry, agriculture, cultural/social service, racial minorities, or aborigines) & state-elected.</li>
+                      <li>• <strong>Minimum Age:</strong> At least <strong>30 years old</strong>.</li>
+                      <li>• <strong>Term of Office:</strong> <strong>3 years</strong> (max 2 terms continuously or otherwise); <strong>not affected</strong> by dissolution of Parliament.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/20 text-xs text-slate-700 dark:text-zinc-300">
+                  <strong class="font-mono text-amber-700 dark:text-amber-400">ARTICLE 49 · AGAINST DOUBLE MEMBERSHIP:</strong> “A person shall not at the same time be a member of both Houses of Parliament, nor be elected to the House of Representatives for more than one constituency or to the Senate for more than one State, nor be both an elected and an appointed member of the Senate.”
+                </div>
+              `
+            }
+          ]
+        },
+        {
+          id: 'law102',
+          code: 'LAW102',
+          part: 'Written Law · Part 1',
+          title: 'The Legislative Process',
+          summary: 'How a Bill becomes law: classification of Bills, origination rules, voting procedures, Royal Assent, and Federal Gazette publication.',
+          tags: ['4 Types of Bills', 'Art 66 & 67', '51% Majority', 'Royal Assent & Gazette'],
+          accent: 'sky',
+          sections: [
+            {
+              id: 'types-of-bills',
+              badge: '01 · PRE-LEGISLATIVE PROCESS',
+              heading: 'Law Drafts: The 4 Types of Bills',
+              content: `
+                <p class="text-sm text-slate-600 dark:text-zinc-300 mb-4">
+                  Law drafts introduced into Parliament are called <strong>Bills</strong>. There are 4 types of Bills:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-sky-600 dark:text-sky-400 mb-1">1. Private Bill</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Laws affecting limited or specific persons or group of persons.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-sky-600 dark:text-sky-400 mb-1">2. Private Member Bill</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Laws introduced by MPs who are not Ministers or Assistant Ministers.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-sky-600 dark:text-sky-400 mb-1">3. Hybrid Bill</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Laws of a general application but in the opinion of the Speaker, may adversely affect individual rights or interests.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-sky-600 dark:text-sky-400 mb-1">4. Government Bill</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Introduced by Ministers or Assistant Ministers; deal with government policy or Cabinet decisions.</p>
+                  </div>
+                </div>
+              `
+            },
+            {
+              id: 'origination-voting',
+              badge: '02 · PARLIAMENTARY STAGES & VOTING',
+              heading: 'Origination Rules (Art 66 & 67) & Voting',
+              content: `
+                <div class="space-y-3 text-sm text-slate-600 dark:text-zinc-300">
+                  <div class="p-4 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border space-y-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20">Article 66(2)</span>
+                      <span class="font-semibold text-slate-900 dark:text-zinc-100">General Origination</span>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-zinc-400">A Bill may originate in <strong>either House</strong> (House of Representatives or Senate), though in practice Bills always originate from the House of Representatives.</p>
+                    <div class="pt-2 border-t border-slate-200 dark:border-surface-border flex flex-wrap items-center gap-2">
+                      <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/10 text-rose-700 dark:text-rose-300 border border-rose-500/20">Article 67(1) · Money Bill</span>
+                      <span class="font-semibold text-slate-900 dark:text-zinc-100">Mandatory Origination</span>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-zinc-400">A <strong>Money Bill</strong> must originate in the <strong>House of Representatives</strong> and be presented by a <strong>Minister</strong>.</p>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-semibold text-xs text-slate-900 dark:text-zinc-100 mb-2">VOTING & THE OTHER HOUSE</div>
+                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-zinc-400 list-disc pl-4">
+                      <li>At each stage, the House votes whether to pass the Bill to the next stage; if votes are insufficient, the Bill fails.</li>
+                      <li>A Bill is passed by a <strong>simple majority (51%)</strong> of MPs present and voting.</li>
+                      <li>An MP may choose not to vote, and an absent MP <strong>cannot delegate</strong> his power to vote to a proxy.</li>
+                      <li>After all four stages are complete in the first House, the Bill is sent to <strong>The Other House (Senate)</strong> for the same four stages, which may propose amendments before returning it.</li>
+                    </ul>
+                  </div>
+                </div>
+              `
+            },
+            {
+              id: 'assent-publication',
+              badge: '03 · ROYAL ASSENT & PUBLICATION',
+              heading: 'Royal Assent & Federal Gazette Publication',
+              content: `
+                <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                  <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                    <div class="font-mono font-bold text-amber-700 dark:text-amber-400 mb-2">STAGE A · ROYAL ASSENT (YDPA)</div>
+                    <ul class="space-y-1.5 text-slate-700 dark:text-zinc-300">
+                      <li>• Presented to the YDPA to affix the <strong>Public Seal</strong>.</li>
+                      <li>• The YDPA has <strong>no power to veto</strong> the Bill or refuse to give assent permanently.</li>
+                      <li>• If he refuses, the Bill stays for <strong>1 month (Money Bill)</strong> or <strong>12 months (non-Money Bill)</strong>, after which it proceeds to become law as if Royal Assent had been given.</li>
+                    </ul>
+                  </div>
+                  <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+                    <div class="font-mono font-bold text-emerald-700 dark:text-emerald-400 mb-2">STAGE B · PUBLICATION</div>
+                    <ul class="space-y-1.5 text-slate-700 dark:text-zinc-300">
+                      <li>• A law is <strong>not legally enforceable</strong> until published in the <strong>Government Gazette (Federal Gazette)</strong>.</li>
+                      <li>• Purpose: Make it known to the public so they are aware of it.</li>
+                      <li>• Includes the commencement date; if no date is given, the law comes into force subsequent to publication.</li>
+                    </ul>
+                  </div>
+                </div>
+              `
+            }
+          ]
+        },
+        {
+          id: 'law103',
+          code: 'LAW103',
+          part: 'Written Law · Part 2',
+          title: 'Subsidiary Legislation & Controls',
+          summary: 'Delegated law-making under Section 3 of the Interpretation Act 1967, the 4 control mechanisms, and landmark ultra vires case law.',
+          tags: ['Interpretation Act 1967', 'Ultra Vires', '4 Controls', 'Ghazali v PP'],
+          accent: 'amber',
+          sections: [
+            {
+              id: 'subsidiary-def',
+              badge: '01 · DELEGATED AUTHORITY',
+              heading: 'Parent Statute & Section 3 Interpretation Act 1967',
+              content: `
+                <p class="text-sm text-slate-600 dark:text-zinc-300 mb-3">
+                  The authority to make a by-law is given in the <strong>Parent Statute</strong> passed by Parliament or the State Legislative Assembly, delegating power to the YDPA, Minister, local government, or agency. It is a law made by a subordinate authority that originally has no power to make laws—a clear contravention of the doctrine of <strong>Separation of Powers</strong>.
+                </p>
+                <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                  <div class="font-mono text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">SECTION 3 · INTERPRETATION ACT 1967</div>
+                  <blockquote class="text-sm italic text-slate-700 dark:text-zinc-200">
+                    “Any proclamation, rule, regulation, order, notification, by-law or other instrument made under any Ordinance, Enactment or other lawful authority and having legislative effect.”
+                  </blockquote>
+                </div>
+              `
+            },
+            {
+              id: 'four-controls',
+              badge: '02 · CHECKS & BALANCES',
+              heading: 'The 4 Controls of Subsidiary Legislation',
+              content: `
+                <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-amber-600 dark:text-amber-400 mb-1">1. Consultation</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Inviting views from interested parties (e.g., JPJ officers, bus-drivers association, and police before banning smoking on public buses). Compulsory if required by the Parent Statute.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-amber-600 dark:text-amber-400 mb-1">2. Publicity</div>
+                    <p class="text-slate-600 dark:text-zinc-400">By-laws must be published in the <strong>Government Gazette</strong> (and usually newspapers) before enforcement. Failure to publish in the Gazette may result in the by-law being declared <strong>invalid</strong>.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-amber-600 dark:text-amber-400 mb-1">3. Parliamentary Control</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Parliament may repeal, suspend, review, or question the Minister. <em>In practice:</em> Quite ineffective due to time constraints and government MPs rarely supporting opposition motions.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-bold text-amber-600 dark:text-amber-400 mb-1">4. Judicial Control (Ultra Vires)</div>
+                    <p class="text-slate-600 dark:text-zinc-400">Anyone aggrieved may challenge a by-law in court. If found <strong>ultra vires</strong> ('beyond the power given'), the court declares the law <strong>invalid or void</strong>.</p>
+                  </div>
+                </div>
+                <div class="mt-3 p-3 rounded-xl bg-slate-100 dark:bg-surface-elevated/70 text-xs text-slate-600 dark:text-zinc-400">
+                  <strong>Effect of Judicial Decision:</strong> The court cannot pronounce any law invalid on its own initiative (requires a legal action), nor can it order the authority to rectify the law—it can only declare the law unenforceable.
+                </div>
+              `
+            },
+            {
+              id: 'case-law-spotlight',
+              badge: '03 · LANDMARK CASE LAW',
+              heading: 'Ghazali v PP [1964] MLJ 156 & Related Authorities',
+              content: `
+                <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20 space-y-2.5 text-xs mb-3">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="font-mono font-bold text-sm text-rose-700 dark:text-rose-400">Ghazali v PP [1964] MLJ 156</span>
+                    <span class="px-2 py-0.5 rounded font-mono bg-rose-500/10 text-rose-700 dark:text-rose-300">Doctrine of Ultra Vires</span>
+                  </div>
+                  <p class="text-slate-700 dark:text-zinc-300 leading-relaxed">
+                    <strong>Facts:</strong> Under s.107(3) and s.118(5) of the <em>Road Traffic Ordinance 1958</em>, the Minister of Transport directed the Licensing Board to give preference to Malay applicants when granting taxi licences. However, the Board added a condition that if a licence was issued to a Malay, the vehicle <strong>must also be driven by a Malay</strong>. Ghazali allowed a Chinese driver to drive his taxi, and his licence was revoked.
+                  </p>
+                  <p class="text-slate-700 dark:text-zinc-300 leading-relaxed">
+                    <strong>Held:</strong> The Court held that the Board had acted <strong>ultra vires</strong>. The directive given by the Minister only empowered them to consider the <em>granting</em> of a licence—it gave no power to revoke the licence or inspect who drove the vehicle thereafter.
+                  </p>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-semibold text-slate-900 dark:text-zinc-100">Teh Cheng Poh v PP [1979] 1 MLJ 50</div>
+                    <p class="text-slate-500 dark:text-zinc-400 mt-1">Landmark authority on the constitutional boundaries of delegated/subsidiary legislative power.</p>
+                  </div>
+                  <div class="p-3 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border">
+                    <div class="font-mono font-semibold text-slate-900 dark:text-zinc-100">Datin Azizah bte Abdul Ghani v Dewan Bandaraya Kuala Lumpur [1992] 2 MLJ 393</div>
+                    <p class="text-slate-500 dark:text-zinc-400 mt-1">Key Malaysian decision enforcing strict statutory compliance and procedural fairness in subsidiary actions.</p>
+                  </div>
+                </div>
+              `
+            }
+          ]
+        }
+      ];
+
+      const QUIZ_QUESTIONS = [
+        {
+          q: "Which Article of the Federal Constitution defines 'Law' to include written law, common law in operation, and custom/usage having the force of law?",
+          options: ["Article 44", "Article 49", "Article 66", "Article 160"],
+          answer: 3,
+          explanation: "Article 160 of the Federal Constitution explicitly defines 'Law' as encompassing written law, common law, and customs/usages having the force of law in the Federation."
+        },
+        {
+          q: "Which Legislative List in the Ninth Schedule of the Federal Constitution grants law-making power exclusively to the State Legislative Assembly?",
+          options: ["List I (Federal List)", "List II (State List)", "List III (Concurrent List)", "List IV (Residual List)"],
+          answer: 1,
+          explanation: "List II of the Ninth Schedule enumerates matters within the legislative competence of the State Legislative Assembly (which is unicameral)."
+        },
+        {
+          q: "What is the minimum age and term of office for a Senator in the Dewan Negara?",
+          options: ["21 years old; 5-year term", "30 years old; 3-year term", "25 years old; 4-year term", "35 years old; 6-year term"],
+          answer: 1,
+          explanation: "Senators (70 members total) must be at least 30 years old and serve a 3-year term (maximum 2 terms), unaffected by the dissolution of Parliament."
+        },
+        {
+          q: "Under Article 67(1) of the Federal Constitution, where MUST a Money Bill originate and who must present it?",
+          options: [
+            "Dewan Negara; presented by the Senate President",
+            "Either House; presented by any MP",
+            "Dewan Rakyat; presented by a Minister",
+            "Dewan Rakyat; presented by the YDPA"
+          ],
+          answer: 2,
+          explanation: "While ordinary Bills may originate in either House under Art 66(2), Art 67(1) mandates that a Money Bill must originate in the Dewan Rakyat and be presented by a Minister."
+        },
+        {
+          q: "If the Yang di-Pertuan Agong does not give Royal Assent to a non-Money Bill, how long must elapse before it automatically becomes law?",
+          options: ["1 month", "6 months", "12 months", "24 months"],
+          answer: 2,
+          explanation: "A Money Bill stays for 1 month, whereas a non-Money Bill stays for 12 months before proceeding to become law as if Royal Assent had been given."
+        },
+        {
+          q: "When does an Act of Parliament become legally enforceable in Malaysia?",
+          options: [
+            "Immediately after passing the Dewan Rakyat",
+            "Upon affixing of the Public Seal by the YDPA",
+            "Only after publication in the Federal Government Gazette",
+            "30 days after the Senate's Third Reading"
+          ],
+          answer: 2,
+          explanation: "A law is not legally enforceable until it has been published in the Federal Government Gazette so that the public is made aware of it."
+        },
+        {
+          q: "Which statute and section defines 'subsidiary legislation' in Malaysia?",
+          options: [
+            "Section 3 of the Interpretation Act 1967",
+            "Section 107(3) of the Road Traffic Ordinance 1958",
+            "Article 49 of the Federal Constitution",
+            "Section 5 of the Civil Law Act 1956"
+          ],
+          answer: 0,
+          explanation: "Section 3 of the Interpretation Act 1967 defines subsidiary legislation as any proclamation, rule, regulation, order, notification, by-law or other instrument having legislative effect."
+        },
+        {
+          q: "In Ghazali v PP [1964] MLJ 156, why did the court declare the Licensing Board's revocation of Ghazali's taxi licence invalid?",
+          options: [
+            "The Parent Statute was never published in the Gazette",
+            "The Board acted ultra vires by imposing a post-grant condition that the vehicle must be driven by a Malay",
+            "Parliament had already repealed the Road Traffic Ordinance 1958",
+            "The Minister failed to consult JPJ before issuing the directive"
+          ],
+          answer: 1,
+          explanation: "The Board acted ultra vires (beyond the power granted) because the Parent Statute and Ministerial directive only governed the granting of licences, not who drove the vehicle thereafter."
+        }
+      ];
+
+      // =========================================================================
+      // 2. APPLICATION STATE & STORAGE
+      // =========================================================================
+      const state = {
+        currentView: 'dashboard', // 'dashboard' | 'module' | 'quiz'
+        activeModuleId: 'law101',
+        completedSections: JSON.parse(localStorage.getItem('law_completed_sections') || '[]'),
+        quizAnswers: JSON.parse(localStorage.getItem('law_quiz_answers') || '{}'),
+        tipIndex: 0,
+        showAllMilestones: false
+      };
+
+      function saveState() {
+        localStorage.setItem('law_completed_sections', JSON.stringify(state.completedSections));
+        localStorage.setItem('law_quiz_answers', JSON.stringify(state.quizAnswers));
+      }
+
+      // =========================================================================
+      // 3. THEME & TOAST UTILITIES
+      // =========================================================================
+      function initTheme() {
+        const savedTheme = localStorage.getItem('law_theme') || 'dark';
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      function toggleTheme() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('law_theme', isDark ? 'dark' : 'light');
+        showToast(isDark ? 'Dark mode enabled' : 'Light mode enabled', isDark ? '🌙' : '☀️');
+      }
+
+      let toastTimer = null;
+      function showToast(msg, icon = '✓') {
+        const box = document.getElementById('toast-box');
+        const msgEl = document.getElementById('toast-message');
+        const iconEl = document.getElementById('toast-icon');
+        if (!box || !msgEl || !iconEl) return;
+        msgEl.textContent = msg;
+        iconEl.textContent = icon;
+        box.classList.remove('hidden');
+        box.classList.add('flex');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          box.classList.add('hidden');
+          box.classList.remove('flex');
+        }, 2400);
+      }
+
+      // =========================================================================
+      // 4. COMMAND PALETTE SEARCH INDEX & MODAL
+      // =========================================================================
+      const SEARCH_INDEX = [
+        { title: 'Dashboard · Overview', subtitle: 'Back to home & study progress', view: 'dashboard' },
+        { title: 'LAW101 · Sources of Written Law & Parliament', subtitle: 'Article 160, 13 States, Ninth Schedule, Art 44 & 49', view: 'module', moduleId: 'law101' },
+        { title: 'Article 160 · Definition of Law', subtitle: 'Written law, common law, custom & usage', view: 'module', moduleId: 'law101', anchor: 'intro-sources' },
+        { title: 'Ninth Schedule Legislative Lists', subtitle: 'List I (Federal), List II (State), List III (Concurrent)', view: 'module', moduleId: 'law101', anchor: 'constitutions-lists' },
+        { title: 'Dewan Rakyat vs Dewan Negara (Art 44)', subtitle: '222 MPs (age 21, 5 yrs) vs 70 Senators (age 30, 3 yrs)', view: 'module', moduleId: 'law101', anchor: 'parliament-composition' },
+        { title: 'LAW102 · The Legislative Process', subtitle: 'Bills, Art 66 & 67, 51% Voting, Royal Assent & Gazette', view: 'module', moduleId: 'law102' },
+        { title: '4 Types of Bills', subtitle: 'Private, Private Member, Hybrid, Government Bills', view: 'module', moduleId: 'law102', anchor: 'types-of-bills' },
+        { title: 'Royal Assent & Federal Gazette', subtitle: '1-month Money Bill vs 12-month non-Money Bill lapse', view: 'module', moduleId: 'law102', anchor: 'assent-publication' },
+        { title: 'LAW103 · Subsidiary Legislation & Controls', subtitle: 'Interpretation Act 1967, 4 Controls, Ultra Vires', view: 'module', moduleId: 'law103' },
+        { title: 'Ghazali v PP [1964] MLJ 156', subtitle: 'Landmark case on Substantive Ultra Vires (Taxi Licence)', view: 'module', moduleId: 'law103', anchor: 'case-law-spotlight' },
+        { title: 'Exam Lab · Written Law Quiz', subtitle: '8 multiple-choice questions with instant explanations', view: 'quiz' }
+      ];
+
+      function openCommandModal() {
+        const modal = document.getElementById('command-modal');
+        const input = document.getElementById('command-input');
+        if (!modal || !input) return;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        input.value = '';
+        filterCommandList('');
+        setTimeout(() => input.focus(), 30);
+      }
+
+      function closeCommandModal() {
+        const modal = document.getElementById('command-modal');
+        if (!modal) return;
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function filterCommandList(query) {
+        const container = document.getElementById('command-results');
+        if (!container) return;
+        const q = query.trim().toLowerCase();
+        const filtered = SEARCH_INDEX.filter(item =>
+          item.title.toLowerCase().includes(q) || item.subtitle.toLowerCase().includes(q)
+        );
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div class="py-8 text-center text-xs font-mono text-slate-400 dark:text-zinc-500">No matching legal topics found for "${escapeHtml(query)}"</div>`;
+          return;
+        }
+
+        container.innerHTML = filtered.map((item, idx) => `
+          <button type="button" data-search-idx="${idx}" class="search-result-btn w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-surface-elevated flex items-center justify-between gap-3 transition-colors group">
+            <div>
+              <div class="text-xs font-semibold text-slate-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">${item.title}</div>
+              <div class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">${item.subtitle}</div>
+            </div>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-surface-border text-slate-500 dark:text-zinc-400">↵</span>
+          </button>
+        `).join('');
+
+        container.querySelectorAll('.search-result-btn').forEach((btn, idx) => {
+          btn.addEventListener('click', () => {
+            const chosen = filtered[idx];
+            closeCommandModal();
+            navigateTo(chosen.view, chosen.moduleId, chosen.anchor);
+          });
+        });
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[m]));
+      }
+
+      // =========================================================================
+      // 5. NAVIGATION & PROGRESS ACTIONS
+      // =========================================================================
+      function navigateTo(view, moduleId = 'law101', anchor = null) {
+        state.currentView = view;
+        if (moduleId) state.activeModuleId = moduleId;
+        render();
+        if (anchor) {
+          setTimeout(() => {
+            const el = document.getElementById(anchor);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      function toggleSectionComplete(sectionKey) {
+        const idx = state.completedSections.indexOf(sectionKey);
+        if (idx === -1) {
+          state.completedSections.push(sectionKey);
+          showToast('Topic marked as mastered', '✓');
+        } else {
+          state.completedSections.splice(idx, 1);
+          showToast('Topic unmarked', '↺');
+        }
+        saveState();
+        render();
+      }
+
+      function answerQuiz(qIdx, optIdx) {
+        state.quizAnswers[qIdx] = optIdx;
+        saveState();
+        render();
+      }
+
+      function resetQuiz() {
+        state.quizAnswers = {};
+        saveState();
+        render();
+        showToast('Quiz reset — ready for another attempt', '↺');
+      }
+
+      function resetProgress() {
+        state.completedSections = [];
+        state.quizAnswers = {};
+        saveState();
+        render();
+        showToast('All study progress cleared', '🗑️');
+      }
+
+      function getOverallStats() {
+        const totalSections = MODULES.reduce((acc, m) => acc + m.sections.length, 0);
+        const doneSections = state.completedSections.length;
+        const pct = Math.round((doneSections / totalSections) * 100);
+        const quizAnswered = Object.keys(state.quizAnswers).length;
+        const quizCorrect = QUIZ_QUESTIONS.reduce((acc, q, i) => acc + (state.quizAnswers[i] === q.answer ? 1 : 0), 0);
+        return { totalSections, doneSections, pct, quizAnswered, quizCorrect };
+      }
+
+      // =========================================================================
+      // 6. VIEW RENDERERS (DASHBOARD, MODULE NOTES, EXAM LAB QUIZ)
+      // =========================================================================
+      function renderDashboard() {
+        const stats = getOverallStats();
+        const visibleMilestones = state.showAllMilestones ? MILESTONES : MILESTONES.slice(0, 2);
+
+        return `
+          <div class="space-y-8 fade-in">
+            <!-- Hero Greeting & Overall Progress -->
+            <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-surface-card border border-slate-200 dark:border-surface-border shadow-xs">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-2 max-w-2xl">
+                  <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                    <span>MALAYSIAN LEGAL SYSTEM</span>
+                    <span>·</span>
+                    <span>WRITTEN LAW</span>
+                  </div>
+                  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-zinc-100">
+                    Welcome back, Counsel.
+                  </h1>
+                  <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
+                    Structured revision workspace for <strong>Written Law (Part 1 & Part 2)</strong> — covering the Federal Constitution, Parliament, the Legislative Process, Subsidiary Legislation, and <em>Ultra Vires</em> case law.
+                  </p>
+                </div>
+
+                <!-- Compact Progress Meter -->
+                <div class="p-4 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border min-w-[210px]">
+                  <div class="flex items-center justify-between text-xs font-mono mb-2">
+                    <span class="text-slate-500 dark:text-zinc-400">SYLLABUS MASTERY</span>
+                    <span class="font-bold text-emerald-600 dark:text-emerald-400">${stats.pct}%</span>
+                  </div>
+                  <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-zinc-800 overflow-hidden mb-2.5">
+                    <div class="h-full bg-emerald-500 rounded-full transition-all duration-300" style="width: ${stats.pct}%"></div>
+                  </div>
+                  <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-zinc-400">
+                    <span>${stats.doneSections}/${stats.totalSections} topics</span>
+                    <span>Quiz: ${stats.quizCorrect}/${QUIZ_QUESTIONS.length}</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Study Tip Banner -->
+            <section class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-start sm:items-center gap-3">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 shrink-0 mt-0.5 sm:mt-0">EXAM TIP</span>
+                <p class="text-xs sm:text-sm text-slate-700 dark:text-zinc-300">${STUDY_TIPS[state.tipIndex]}</p>
+              </div>
+              <button id="next-tip-btn" type="button" class="self-end sm:self-center px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-surface-card hover:bg-slate-100 dark:hover:bg-surface-elevated border border-slate-200 dark:border-surface-border text-slate-600 dark:text-zinc-300 shrink-0 transition-colors">
+                Next tip →
+              </button>
+            </section>
+
+            <!-- Study Roadmap / Upcoming Revision -->
+            <section class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+                  Revision Roadmap
+                </h2>
+                <button id="toggle-milestones-btn" type="button" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline">
+                  ${state.showAllMilestones ? 'Show less' : `Show all (${MILESTONES.length})`}
+                </button>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-3">
+                ${visibleMilestones.map(m => `
+                  <button type="button" data-nav-view="${m.targetModule === 'quiz' ? 'quiz' : 'module'}" data-nav-mod="${m.targetModule}" class="milestone-card text-left p-4 rounded-xl bg-white dark:bg-surface-card hover:border-emerald-500/40 border border-slate-200 dark:border-surface-border transition-all group">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                      <span class="text-[10px] font-mono font-semibold text-emerald-600 dark:text-emerald-400">${m.tag}</span>
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-elevated text-slate-600 dark:text-zinc-400">${m.status}</span>
+                    </div>
+                    <div class="text-sm font-semibold text-slate-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      ${m.title}
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1 line-clamp-2">${m.desc}</p>
+                  </button>
+                `).join('')}
+              </div>
+            </section>
+
+            <!-- Course Modules & Exam Lab Grid -->
+            <section class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+                  Core Modules & Practice Lab
+                </h2>
+                <span class="text-xs font-mono text-slate-400 dark:text-zinc-500">Click any card to open notes</span>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                ${MODULES.map(mod => {
+                  const modDone = mod.sections.filter(s => state.completedSections.includes(`${mod.id}:${s.id}`)).length;
+                  const modTotal = mod.sections.length;
+                  const isComplete = modDone === modTotal;
+                  return `
+                    <div data-open-module="${mod.id}" class="module-card cursor-pointer p-5 rounded-2xl bg-white dark:bg-surface-card hover:border-emerald-500/50 border border-slate-200 dark:border-surface-border transition-all flex flex-col justify-between group">
+                      <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                          <span class="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-slate-100 dark:bg-surface-elevated text-slate-800 dark:text-zinc-200 border border-slate-200 dark:border-surface-border">
+                            ${mod.code}
+                          </span>
+                          <span class="text-[11px] font-mono ${isComplete ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-slate-500 dark:text-zinc-400'}">
+                            ${isComplete ? '✓ Completed' : `${modDone}/${modTotal} sections`}
+                          </span>
+                        </div>
+                        <div class="text-[11px] font-mono text-slate-400 dark:text-zinc-500 mb-1">${mod.part}</div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2">
+                          ${mod.title}
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed mb-4">
+                          ${mod.summary}
+                        </p>
+                      </div>
+                      <div class="pt-3 border-t border-slate-100 dark:border-surface-border flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex flex-wrap gap-1.5">
+                          ${mod.tags.slice(0, 3).map(t => `
+                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-50 dark:bg-surface-elevated text-slate-600 dark:text-zinc-400 border border-slate-200/80 dark:border-surface-border">${t}</span>
+                          `).join('')}
+                        </div>
+                        <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform">Open →</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+
+                <!-- Exam Lab Quiz Card -->
+                <div id="open-quiz-card" class="cursor-pointer p-5 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-white to-sky-500/10 dark:from-emerald-500/10 dark:via-surface-card dark:to-sky-500/10 hover:border-emerald-500/60 border border-emerald-500/30 transition-all flex flex-col justify-between group">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                      <span class="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
+                        EXAM LAB
+                      </span>
+                      <span class="text-[11px] font-mono text-emerald-700 dark:text-emerald-400 font-semibold">
+                        Score: ${stats.quizCorrect}/${QUIZ_QUESTIONS.length}
+                      </span>
+                    </div>
+                    <div class="text-[11px] font-mono text-slate-500 dark:text-zinc-400 mb-1">Interactive Assessment</div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2">
+                      Written Law Practice Quiz (8 MCQs)
+                    </h3>
+                    <p class="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed mb-4">
+                      Test your mastery of Article 160, Ninth Schedule lists, Art 44 & 67, Royal Assent timelines, Section 3 Interpretation Act 1967, and <em>Ghazali v PP</em>.
+                    </p>
+                  </div>
+                  <div class="pt-3 border-t border-emerald-500/20 flex items-center justify-between text-xs font-mono">
+                    <span class="text-slate-600 dark:text-zinc-400">Instant explanations included</span>
+                    <span class="text-emerald-600 dark:text-emerald-400 font-semibold group-hover:translate-x-0.5 transition-transform">Start Drill →</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        `;
+      }
+
+      function renderModuleView() {
+        const mod = MODULES.find(m => m.id === state.activeModuleId) || MODULES[0];
+        const modIdx = MODULES.findIndex(m => m.id === mod.id);
+        const prevMod = modIdx > 0 ? MODULES[modIdx - 1] : null;
+        const nextMod = modIdx < MODULES.length - 1 ? MODULES[modIdx + 1] : null;
+
+        return `
+          <div class="space-y-6 fade-in">
+            <!-- Breadcrumb & Module Switcher -->
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <button id="back-dashboard-btn" type="button" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                <span>←</span>
+                <span>Back to Dashboard</span>
+              </button>
+              <div class="flex items-center gap-1.5">
+                ${MODULES.map(m => `
+                  <button type="button" data-switch-mod="${m.id}" class="switch-mod-btn px-2.5 py-1 rounded-lg text-xs font-mono border transition-colors ${m.id === mod.id ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-bold' : 'bg-white dark:bg-surface-card border-slate-200 dark:border-surface-border text-slate-500 dark:text-zinc-400 hover:border-slate-300'}">
+                    ${m.code}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Module Header Card -->
+            <div class="p-6 rounded-2xl bg-white dark:bg-surface-card border border-slate-200 dark:border-surface-border">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">${mod.code}</span>
+                <span class="text-xs font-mono text-slate-500 dark:text-zinc-400">${mod.part}</span>
+              </div>
+              <h1 class="text-2xl font-bold text-slate-900 dark:text-zinc-100 mb-2">${mod.title}</h1>
+              <p class="text-sm text-slate-600 dark:text-zinc-400 mb-4">${mod.summary}</p>
+              <div class="flex flex-wrap gap-1.5">
+                ${mod.tags.map(t => `
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-surface-elevated text-slate-600 dark:text-zinc-300 border border-slate-200 dark:border-surface-border">${t}</span>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Sections List -->
+            <div class="space-y-5">
+              ${mod.sections.map(sec => {
+                const secKey = `${mod.id}:${sec.id}`;
+                const isDone = state.completedSections.includes(secKey);
+                return `
+                  <article id="${sec.id}" class="p-6 rounded-2xl bg-white dark:bg-surface-card border ${isDone ? 'border-emerald-500/40' : 'border-slate-200 dark:border-surface-border'} transition-colors">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                      <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400">${sec.badge}</span>
+                      <button type="button" data-toggle-sec="${secKey}" class="toggle-sec-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono border transition-colors ${isDone ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300' : 'bg-slate-50 dark:bg-surface-elevated border-slate-200 dark:border-surface-border text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'}">
+                        <span>${isDone ? '✓ Mastered' : '○ Mark as Mastered'}</span>
+                      </button>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-zinc-100 mb-4">${sec.heading}</h2>
+                    <div>${sec.content}</div>
+                  </article>
+                `;
+              }).join('')}
+            </div>
+
+            <!-- Bottom Module Navigation -->
+            <div class="pt-4 flex flex-wrap items-center justify-between gap-3">
+              ${prevMod ? `
+                <button type="button" data-switch-mod="${prevMod.id}" class="switch-mod-btn px-4 py-2.5 rounded-xl text-xs font-mono bg-white dark:bg-surface-card hover:border-emerald-500/40 border border-slate-200 dark:border-surface-border text-slate-700 dark:text-zinc-300 transition-colors">
+                  ← Previous: ${prevMod.code}
+                </button>
+              ` : '<div></div>'}
+
+              ${nextMod ? `
+                <button type="button" data-switch-mod="${nextMod.id}" class="switch-mod-btn px-4 py-2.5 rounded-xl text-xs font-mono bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors">
+                  Next Module: ${nextMod.code} →
+                </button>
+              ` : `
+                <button id="go-exam-lab-btn" type="button" class="px-4 py-2.5 rounded-xl text-xs font-mono bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors">
+                  Proceed to Exam Lab Quiz →
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderQuizView() {
+        const stats = getOverallStats();
+        return `
+          <div class="space-y-6 fade-in">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <button id="back-dashboard-btn" type="button" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                <span>←</span>
+                <span>Back to Dashboard</span>
+              </button>
+              <button id="reset-quiz-btn" type="button" class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-surface-card hover:border-rose-500/40 border border-slate-200 dark:border-surface-border text-slate-600 dark:text-zinc-300 transition-colors">
+                Reset Quiz Answers
+              </button>
+            </div>
+
+            <!-- Quiz Header -->
+            <div class="p-6 rounded-2xl bg-white dark:bg-surface-card border border-slate-200 dark:border-surface-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 mb-1">EXAM LAB · SELF-ASSESSMENT</div>
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-zinc-100">Malaysian Written Law Quiz</h1>
+                <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1">Select an option to verify your answer and review the constitutional or statutory authority.</p>
+              </div>
+              <div class="px-4 py-3 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border text-center shrink-0">
+                <div class="text-[10px] font-mono text-slate-500 dark:text-zinc-400">CURRENT SCORE</div>
+                <div class="text-xl font-mono font-bold text-emerald-600 dark:text-emerald-400">${stats.quizCorrect} / ${QUIZ_QUESTIONS.length}</div>
+              </div>
+            </div>
+
+            <!-- Questions List -->
+            <div class="space-y-4">
+              ${QUIZ_QUESTIONS.map((item, qIdx) => {
+                const chosen = state.quizAnswers[qIdx];
+                const hasAnswered = chosen !== undefined;
+                return `
+                  <div class="p-6 rounded-2xl bg-white dark:bg-surface-card border border-slate-200 dark:border-surface-border">
+                    <div class="text-xs font-mono text-slate-400 dark:text-zinc-500 mb-2">QUESTION 0${qIdx + 1}</div>
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-zinc-100 mb-4">${item.q}</h3>
+                    <div class="space-y-2">
+                      ${item.options.map((opt, oIdx) => {
+                        let btnStyle = 'bg-slate-50 dark:bg-surface-elevated border-slate-200 dark:border-surface-border text-slate-700 dark:text-zinc-300 hover:border-emerald-500/40';
+                        let marker = String.fromCharCode(65 + oIdx);
+                        if (hasAnswered) {
+                          if (oIdx === item.answer) {
+                            btnStyle = 'bg-emerald-500/15 border-emerald-500/50 text-emerald-800 dark:text-emerald-200 font-medium';
+                            marker = '✓';
+                          } else if (oIdx === chosen) {
+                            btnStyle = 'bg-rose-500/15 border-rose-500/50 text-rose-800 dark:text-rose-200';
+                            marker = '✕';
+                          } else {
+                            btnStyle = 'bg-slate-50/60 dark:bg-surface-elevated/40 border-slate-200/60 dark:border-surface-border/60 text-slate-400 dark:text-zinc-500';
+                          }
+                        }
+                        return `
+                          <button type="button" data-q="${qIdx}" data-opt="${oIdx}" class="quiz-opt-btn w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm flex items-center gap-3 transition-colors ${btnStyle}">
+                            <span class="w-6 h-6 rounded-md font-mono text-xs flex items-center justify-center bg-white/80 dark:bg-surface-dark/80 border border-current/20 shrink-0">${marker}</span>
+                            <span>${opt}</span>
+                          </button>
+                        `;
+                      }).join('')}
+                    </div>
+                    ${hasAnswered ? `
+                      <div class="mt-4 p-3.5 rounded-xl bg-slate-50 dark:bg-surface-elevated border border-slate-200 dark:border-surface-border text-xs text-slate-600 dark:text-zinc-300">
+                        <strong class="font-mono text-emerald-600 dark:text-emerald-400">LEGAL AUTHORITY:</strong> ${item.explanation}
+                      </div>
+                    ` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // =========================================================================
+      // 7. MAIN RENDER & EVENT BINDING
+      // =========================================================================
+      function render() {
+        const root = document.getElementById('app-root');
+        if (!root) return;
+
+        if (state.currentView === 'module') {
+          root.innerHTML = renderModuleView();
+        } else if (state.currentView === 'quiz') {
+          root.innerHTML = renderQuizView();
+        } else {
+          root.innerHTML = renderDashboard();
+        }
+
+        bindDynamicEvents();
+      }
+
+      function bindDynamicEvents() {
+        const nextTipBtn = document.getElementById('next-tip-btn');
+        if (nextTipBtn) {
+          nextTipBtn.addEventListener('click', () => {
+            state.tipIndex = (state.tipIndex + 1) % STUDY_TIPS.length;
+            render();
+          });
+        }
+
+        const toggleMilestonesBtn = document.getElementById('toggle-milestones-btn');
+        if (toggleMilestonesBtn) {
+          toggleMilestonesBtn.addEventListener('click', () => {
+            state.showAllMilestones = !state.showAllMilestones;
+            render();
+          });
+        }
+
+        document.querySelectorAll('.milestone-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const view = card.getAttribute('data-nav-view');
+            const mod = card.getAttribute('data-nav-mod');
+            navigateTo(view, mod);
+          });
+        });
+
+        document.querySelectorAll('.module-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const modId = card.getAttribute('data-open-module');
+            navigateTo('module', modId);
+          });
+        });
+
+        const openQuizCard = document.getElementById('open-quiz-card');
+        if (openQuizCard) {
+          openQuizCard.addEventListener('click', () => navigateTo('quiz'));
+        }
+
+        const backDashBtn = document.getElementById('back-dashboard-btn');
+        if (backDashBtn) {
+          backDashBtn.addEventListener('click', () => navigateTo('dashboard'));
+        }
+
+        document.querySelectorAll('.switch-mod-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const modId = btn.getAttribute('data-switch-mod');
+            navigateTo('module', modId);
+          });
+        });
+
+        document.querySelectorAll('.toggle-sec-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-toggle-sec');
+            toggleSectionComplete(key);
+          });
+        });
+
+        const goExamLabBtn = document.getElementById('go-exam-lab-btn');
+        if (goExamLabBtn) {
+          goExamLabBtn.addEventListener('click', () => navigateTo('quiz'));
+        }
+
+        const resetQuizBtn = document.getElementById('reset-quiz-btn');
+        if (resetQuizBtn) {
+          resetQuizBtn.addEventListener('click', resetQuiz);
+        }
+
+        document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const qIdx = Number(btn.getAttribute('data-q'));
+            const optIdx = Number(btn.getAttribute('data-opt'));
+            answerQuiz(qIdx, optIdx);
+          });
+        });
+      }
+
+      // Static Header, Footer & Global Keyboard Bindings
+      document.getElementById('brand-home-btn').addEventListener('click', () => navigateTo('dashboard'));
+      document.getElementById('open-search-btn').addEventListener('click', openCommandModal);
+      document.getElementById('close-search-btn').addEventListener('click', closeCommandModal);
+      document.getElementById('theme-toggle-btn').addEventListener('click', toggleTheme);
+      document.getElementById('reset-progress-btn').addEventListener('click', resetProgress);
+
+      document.getElementById('command-input').addEventListener('input', (e) => {
+        filterCommandList(e.target.value);
+      });
+
+      document.getElementById('command-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'command-modal') {
+          closeCommandModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('command-modal');
+        const isOpen = modal && !modal.classList.contains('hidden');
+        const activeTag = document.activeElement ? document.activeElement.tagName : '';
+
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          isOpen ? closeCommandModal() : openCommandModal();
+        } else if (e.key === '/' && !isOpen && activeTag !== 'INPUT' && activeTag !== 'TEXTAREA') {
+          e.preventDefault();
+          openCommandModal();
+        } else if (e.key === 'Escape' && isOpen) {
+          closeCommandModal();
+        }
+      });
+
+      // Boot Application
+      initTheme();
+      render();
+    })();
+  </script>
+</body>
+</html>
